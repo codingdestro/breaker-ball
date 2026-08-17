@@ -12,7 +12,7 @@ local Brick = require("src.brick")
 local Powerup = require("src.powerup")
 local Levels = require("src.levels")
 
-local W, H = 960, 540
+local W, H = 390, 600
 
 local state = "title"
 local titleSelection = 1

@@ -6,8 +6,8 @@ local uiFont = nil
 local smallFont = nil
 
 function Gfx.load()
-    uiFont = love.graphics.newFont(24)
-    smallFont = love.graphics.newFont(16)
+    uiFont = love.graphics.newFont(16)
+    smallFont = love.graphics.newFont(11)
 end
 
 -- Sets a color with an optional alpha multiplier.
@@ -19,6 +19,12 @@ end
 function Gfx.rect(cx, cy, w, h, c, alpha)
     Gfx.setColor(c, alpha)
     love.graphics.rectangle("fill", cx - w / 2, cy - h / 2, w, h)
+end
+
+-- Draws a filled rounded rectangle from center coordinates.
+function Gfx.roundRect(cx, cy, w, h, radius, c, alpha)
+    Gfx.setColor(c, alpha)
+    love.graphics.rectangle("fill", cx - w / 2, cy - h / 2, w, h, radius, radius)
 end
 
 -- Draws a filled circle from center coordinates.
@@ -52,6 +58,17 @@ function Gfx.glowRect(cx, cy, w, h, c, alpha)
     love.graphics.rectangle("fill", cx - w / 2 - 2, cy - h / 2 - 2, w + 4, h + 4)
     Gfx.setColor(c, alpha)
     love.graphics.rectangle("fill", cx - w / 2, cy - h / 2, w, h)
+end
+
+-- Draws a neon rounded rectangle with layered glow.
+function Gfx.glowRoundRect(cx, cy, w, h, radius, c, alpha)
+    local glow = { c[1], c[2], c[3] }
+    Gfx.setColor(glow, (alpha or 1) * 0.12)
+    love.graphics.rectangle("fill", cx - w / 2 - 4, cy - h / 2 - 4, w + 8, h + 8, radius + 4, radius + 4)
+    Gfx.setColor(glow, (alpha or 1) * 0.25)
+    love.graphics.rectangle("fill", cx - w / 2 - 2, cy - h / 2 - 2, w + 4, h + 4, radius + 2, radius + 2)
+    Gfx.setColor(c, alpha)
+    love.graphics.rectangle("fill", cx - w / 2, cy - h / 2, w, h, radius, radius)
 end
 
 -- Draws neon glowing text by layering translucent copies behind the core text.
