@@ -4,8 +4,8 @@ local Colors = require("src.colors")
 local Gfx = require("src.gfx")
 local Audio = require("src.audio")
 
-local RADIUS = 6
-local baseSpeed = 350
+local RADIUS = 4
+local baseSpeed = 260
 local speedScale = 1
 local slowTime = 0
 
@@ -17,7 +17,7 @@ function Ball.reset(paddleX, paddleY)
     slowTime = 0
     local b = {
         x = paddleX,
-        y = paddleY - RADIUS - 6,
+        y = paddleY - RADIUS - 4,
         vx = 0,
         vy = 0,
         radius = RADIUS,
@@ -136,13 +136,13 @@ end
 -- Re-attaches any unlaunched balls to the paddle.
 function Ball.stick(ball, paddleX, paddleY)
     ball.x = paddleX
-    ball.y = paddleY - ball.radius - 6
+    ball.y = paddleY - ball.radius - 4
 end
 
 function Ball.draw()
     for _, b in ipairs(balls) do
         Gfx.glowCircle(b.x, b.y, b.radius, Colors.cyan)
-        Gfx.circle(b.x, b.y, b.radius - 2, Colors.white)
+        Gfx.circle(b.x, b.y, math.max(1, b.radius - 1), Colors.white)
     end
 end
 

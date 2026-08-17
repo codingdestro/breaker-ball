@@ -6,8 +6,8 @@ local uiFont = nil
 local smallFont = nil
 
 function Gfx.load()
-    uiFont = love.graphics.newFont(24)
-    smallFont = love.graphics.newFont(16)
+    uiFont = love.graphics.newFont(16)
+    smallFont = love.graphics.newFont(11)
 end
 
 -- Sets a color with an optional alpha multiplier.

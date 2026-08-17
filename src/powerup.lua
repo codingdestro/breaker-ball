@@ -61,7 +61,7 @@ function Powerup.spawn(x, y)
     table.insert(powerups, {
         x = x,
         y = y,
-        vy = 120,
+        vy = 90,
         kind = Powerup.randomKind(),
     })
 end
@@ -90,15 +90,15 @@ end
 
 function Powerup.draw()
     if not labelFont then
-        labelFont = love.graphics.newFont(10)
+        labelFont = love.graphics.newFont(8)
     end
     for _, p in ipairs(powerups) do
         local c = KIND_COLORS[p.kind]
-        Gfx.pixelCircle(p.x, p.y, 9, c)
-        Gfx.pixelCircle(p.x, p.y, 5, Colors.white, 0.7)
+        Gfx.pixelCircle(p.x, p.y, 6, c)
+        Gfx.pixelCircle(p.x, p.y, 3, Colors.white, 0.7)
         love.graphics.setColor(Colors.white)
         love.graphics.setFont(labelFont)
-        love.graphics.print(KIND_CHARS[p.kind], p.x - 3, p.y - 5)
+        love.graphics.print(KIND_CHARS[p.kind], p.x - 2, p.y - 4)
     end
 end
 

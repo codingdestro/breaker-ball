@@ -4,10 +4,10 @@ local Colors = require("src.colors")
 local Gfx = require("src.gfx")
 
 local COLS = 10
-local BRICK_WIDTH = 72
-local BRICK_HEIGHT = 18
-local PADDING = 4
-local OFFSET_TOP = 70
+local BRICK_WIDTH = 33
+local BRICK_HEIGHT = 10
+local PADDING = 2
+local OFFSET_TOP = 100
 
 local bricks = {}
 
@@ -56,7 +56,7 @@ function Brick.load(level)
           alive = true,
           row = rowIndex,
           col = col,
-          vx = (love.math.random() < 0.5) and 40 or -40,
+          vx = (love.math.random() < 0.5) and 28 or -28,
         }
         table.insert(bricks, brick)
       end

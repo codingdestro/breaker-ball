@@ -3,12 +3,12 @@ local Paddle = {}
 local Colors = require("src.colors")
 local Gfx = require("src.gfx")
 
-local W = 960
-local H = 540
+local W = 390
+local H = 844
 
-local BASE_WIDTH = 96
-local HEIGHT = 12
-local SPEED = 500
+local BASE_WIDTH = 48
+local HEIGHT = 8
+local SPEED = 340
 
 local paddle = {}
 local bullets = {}
@@ -27,7 +27,7 @@ end
 
 function Paddle.reset()
     paddle.x = W / 2
-    paddle.y = H - 40
+    paddle.y = H - 64
     paddle.width = BASE_WIDTH
     paddle.height = HEIGHT
     paddle.vx = 0
@@ -78,7 +78,7 @@ end
 
 function Paddle.fireLaser()
     if laserTime > 0 and laserCooldown <= 0 then
-        table.insert(bullets, { x = paddle.x, y = paddle.y - paddle.height / 2 - 4 })
+        table.insert(bullets, { x = paddle.x, y = paddle.y - paddle.height / 2 - 3 })
         laserCooldown = 1 / 3
     end
 end
@@ -106,8 +106,8 @@ function Paddle.update(dt)
     -- Move and cull bullets.
     for i = #bullets, 1, -1 do
         local b = bullets[i]
-        b.y = b.y - 500 * dt
-        if b.y < -10 then
+        b.y = b.y - 420 * dt
+        if b.y < -8 then
             table.remove(bullets, i)
         end
     end
@@ -123,7 +123,7 @@ function Paddle.draw()
     love.graphics.rectangle("fill", paddle.x - paddle.width / 2, paddle.y - 2, paddle.width, 4)
 
     for _, b in ipairs(bullets) do
-        Gfx.pixelCircle(b.x, b.y, 3, Colors.magenta)
+        Gfx.pixelCircle(b.x, b.y, 2, Colors.magenta)
     end
 end
 
