@@ -4,7 +4,7 @@ local Colors = require("src.colors")
 local Gfx = require("src.gfx")
 
 local W = 390
-local H = 844
+local H = 600
 
 local BASE_WIDTH = 48
 local HEIGHT = 8
@@ -118,9 +118,10 @@ function Paddle.draw()
     if laserTime > 0 then
         c = Colors.magenta
     end
-    Gfx.glowRect(paddle.x, paddle.y, paddle.width, paddle.height, c)
+    local radius = paddle.height / 2
+    Gfx.glowRoundRect(paddle.x, paddle.y, paddle.width, paddle.height, radius, c)
     Gfx.setColor(Colors.white, 0.8)
-    love.graphics.rectangle("fill", paddle.x - paddle.width / 2, paddle.y - 2, paddle.width, 4)
+    love.graphics.rectangle("fill", paddle.x - paddle.width / 2 + 2, paddle.y - 2, paddle.width - 4, 3, 1.5, 1.5)
 
     for _, b in ipairs(bullets) do
         Gfx.pixelCircle(b.x, b.y, 2, Colors.magenta)
